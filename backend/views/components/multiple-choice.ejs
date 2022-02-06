@@ -1,0 +1,30 @@
+<div class="form-group multi-select-dropbox">
+    <label for="music-director"><%= label %></label>
+    <div class="selected-items">
+        <select style="display: none;" name="<%= selectFieldName %>" multiple>
+            <% if(values!==[]){ values.forEach(val=>{ %>
+                <option value="<%- val.id%>" selected=""><%- val.name%></option>
+            <% }) }%>
+        </select>
+        <% if(values!==[]){ values.forEach(val=>{ %>
+            
+        <% }) }%>
+            
+    </div>
+    <div class="chooser-panel">
+        <div class="chooserList">
+            <div class="form-group">
+                <input type="text" class="form-control ajaxRequester"
+                    placeholder="type name to get form server">
+                <div class="items">
+                    <div class="found-items">
+                    </div>
+                    <div class="not-found">
+                        <div class="message">Nothing found</div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add artist Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

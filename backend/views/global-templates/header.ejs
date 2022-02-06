@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/all.min.css">
+        <link rel="stylesheet" href="/css/fontawesome.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Sen&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/ripple.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <% if(stylesheets!=[]){
+            stylesheets.forEach(sheet=>{
+                %>
+            <link rel="stylesheet" href="<%= sheet %>">
+          <%  })
+        } %>
+        
+        <link rel="stylesheet" href="/css/global.css">
+    </head>
+    
+    <body>
+        <nav>
+            <% if(isAdmin==true) { %>
+            <div class="nav-toggle-btn ripple-effect fas fa-bars"></div>
+            <% } %>
+            <a href="#" class="left-content"><img src="/img/logo.jpg" alt="">MusicBox</a>
+            <div class="right-content">
+                <% if(isAdmin==true) { %>
+                    <div class="drop-down-box">
+                        <span class="fas fa-user-cog ripple-effect drop-toggle"></span>
+                        <div class="hidden-content">
+                            <ul>
+                                <li><a href="/update-profile" class="item"><i class="fas fa-lock"></i>change password</a></li>
+                                <li><a href="/logout" class="item"><i class="fas fa-sign-out-alt"></i>logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            </div>
+        </nav>

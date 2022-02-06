@@ -1,0 +1,30 @@
+
+.list-container{
+    box-sizing: border-box;
+    padding: 10px;
+    .items{
+        text-align: center;
+        a{
+            i{
+                font-size: 35px;
+                margin-right: 5px;
+                text-decoration: none;
+            }
+            line-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+            margin-top: 25px;
+            border: 1px solid #dadce0;
+            background-color: #fff;
+            width: 100%;
+            padding: 25px 0px;
+            &:hover{
+                i{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

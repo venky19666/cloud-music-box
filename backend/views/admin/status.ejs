@@ -1,0 +1,21 @@
+<%- include('../global-templates/header',{title: 'status',isAdmin: isAdmin,stylesheets:[]}); %>
+
+<div class="toggle-container">
+    <div class="side-box">
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i>Upload Album</a></li>
+            <li><a href="#"><i class="fas fa-home"></i>Upload Songs</a></li>
+            <li><a href="#"><i class="fas fa-home"></i>upload Artist Data</a></li>
+            <li><a href="#"><i class="fas fa-home"></i>Update album data</a></li>
+        </ul>
+    </div>
+    <div class="context-box">
+        <div class="container">
+            <div class="alert alert-success" style="text-align: center;" role="alert">
+                <%- message%>
+                <a href="<%- link%>" style="text-align: center;"><%- linkText%></a>
+              </div>
+        </div>
+    </div>
+</div>
+<%- include('../global-templates/footer',error,success); %>

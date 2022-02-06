@@ -1,0 +1,191 @@
+<%- include('../global-templates/header',{title: 'Music-Box! Here You Can Update Album data..',isAdmin: isAdmin,stylesheets:[]}); %>
+
+<div class="toggle-container">
+    <%- include('../global-templates/side-pannel',{linkNum: 4})%>
+    <div class="context-box">
+        <section>
+            <div class="main-form-container container">
+                <form action="/admin/edit/status" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<%- data.albumId%>">
+                    <div class="form-group">
+                        <label for="album-name">Album Name</label>
+                        <input type="text" class="form-control" value="<%- data.albumName%>" name="albumName">
+                    </div>
+                    <div class="form-group multi-select-dropbox">
+                        <label for="music-director">Music Director</label>
+                        <div class="selected-items">
+                            <select style="display: none;" name="musicDirector" multiple>
+                                <% if(data.musicDirector!==[]){ data.musicDirector.forEach(val=>{ %>
+                                    <option value="<%- val.id%>" selected=""><%- val.name%></option>
+                                <% }) }%>
+                            </select>
+                            <% if(data.musicDirector!==[]){ data.musicDirector.forEach(val=>{ %>
+                                <div class="item" dataid="<%- val.id%>"><%- val.name%></div>
+                            <% }) }%>
+                        </div>
+                        <div class="chooser-panel">
+                            <div class="chooserList">
+                                <div class="form-group">
+                                    <input type="text" class="form-control ajaxRequester"
+                                        placeholder="type name to get form server">
+                                    <div class="items">
+                                        <div class="found-items">
+                                        </div>
+    
+                                        <div class="not-found">
+                                            <div class="message">Nothing found</div>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add artist Data</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <%- include('../components/multiple-choice',{label:'cast details',selectFieldName: 'castDetails',values:data.castDetails}) %>
+                    <div class="form-group">
+                        <label for="album-name">Release Date</label>
+                        <input type="date" class="form-control" id="albumDate" value="<%- data.releaseDate%>" name="releaseDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="album-name">Image URL</label>
+                        <input type="file" class="form-control" id="image-file" name="imageFile">
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        
+                        <% if(data.songData!==[]){
+                            let i = 0;
+                            data.songData.forEach(song=>{
+
+                            
+                            i++; %>
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapse<%- i%>" aria-expanded="true" aria-controls="collapseOne">
+                                        <input type="hidden" name="songId<%- i%>" value="<%- song.id%>">
+                                        song number <%- i%>
+                                    </button>
+                                </h2>
+                            </div>
+    
+                            <div id="collapse<%- i%>" class="collapse <% if(i==1){%><%- 'show'%> <%}%>" aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="album-name">song name</label>
+                                        <input type="text" class="form-control" value="<%- song.songName %>" name="songName<%- i%>" id="song-name"
+                                            aria-describedby="emailHelp">
+                                    </div>
+                                    <%- include('../components/multiple-choice',{label:'Singers',selectFieldName: 'singers'+i,values:song.singers}) %>
+                                    
+                                    <%- include('../components/multiple-choice',{label:'Lyricists',selectFieldName: 'lyricists'+i,values:song.lyricists}) %>
+                                    
+                                    
+    
+                                    <div class="form-group multiple-checkbox">
+                                        <label for="slectionOfMood">Select song mood type</label>
+                                        <div class="selected-items">
+                                            <select name="moodNames<%- i%>" class="moodlist"  multiple>
+                                                <% if(song.moodNames!==[]){ song.moodNames.forEach(val=>{ %>
+                                                    <option value="<%- val.name%>" selected=""><%- val.name%></option>
+                                                <% }) }%>
+                                            </select>
+                                            <li>Aggressive</li>
+                                            <li>Bitter</li>
+                                            <li>Bittersweet</li>
+                                            <li>Bleak</li>
+                                            <li>Dreamy</li>
+                                            <li>Driving</li>
+                                            <li>Elegant</li>
+                                            <li>Epic</li>
+                                            <li>Erotic</li>
+                                            <li>Exotic</li>
+                                            <li>Fun</li>
+                                            <li>Gentle</li>
+                                            <li>Gloomy</li>
+                                            <li>Graceful</li>
+                                            <li>Grim</li>
+                                            <li>Sad</li>
+                                            <li>Love</li>
+                                            <li>Motivate</li>
+                                            <li>Scary</li>
+                                            <li>Spicy</li>
+                                        </div>
+                                        <div class="total-items">
+                                            <div class="grouper">
+                                                <li>Aggressive</li>
+                                                <li>Bitter</li>
+                                                <li>Bittersweet</li>
+                                                <li>Bleak</li>
+                                                <li>Dreamy</li>
+                                                <li>Driving</li>
+                                                <li>Elegant</li>
+                                                <li>Epic</li>
+                                                <li>Erotic</li>
+                                                <li>Exotic</li>
+                                                <li>Fun</li>
+                                                <li>Gentle</li>
+                                                <li>Gloomy</li>
+                                                <li>Graceful</li>
+                                                <li>Grim</li>
+                                                <li>Sad</li>
+                                                <li>Love</li>
+                                                <li>Motivate</li>
+                                                <li>Scary</li>
+                                                <li>Spicy</li>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="album-name">song URL</label>
+                                        <input type="file" class="form-control" name="songURL<%- i%>"
+                                            aria-describedby="emailHelp">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%  }) }%>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                </form>
+            </div>
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Artist Data</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="artist-name">Artist Name</label>
+                                <input type="text" class="form-control"  id="artist-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="image-file">Image File</label>
+                                <input type="file" class="form-control" id="artist-image">
+                            </div>
+                            <div class="progress" style="display: none;">
+                                <div class="progress-bar progress-bar-striped"  role="progressbar" style="width: 0%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="alert" style="text-align: center;" role="alert">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="post-artist" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<%- include('../global-templates/footer',error,success); %>

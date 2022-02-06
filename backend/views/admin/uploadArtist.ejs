@@ -1,0 +1,22 @@
+<%- include('../global-templates/header',{title: 'Music-Box! Here You Can Upload Artist data..',isAdmin: isAdmin,stylesheets:['/css/dashboard.css']}); %>
+
+    
+    <div class="toggle-container">
+      <%- include('../global-templates/side-pannel',{linkNum: 3})%>
+      <div class="context-box">
+        <div class="container">
+          <form action="" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="artist-name">Enter Artist Full Name</label>
+                <input type="text" class="form-control" name="artistName" id="artist-name">
+              </div>
+              <div class="form-group">
+                <label for="imageFile">Image File</label>
+                <input type="file" class="form-control" name="imageURL" id="imageFile">
+              </div>
+              <button type="submit" class="btn btn-primary">Upload Artist</button>
+            </form>
+      </div>
+      </div>
+  </div>
+<%- include('../global-templates/footer',error,success); %>

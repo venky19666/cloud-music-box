@@ -1,0 +1,38 @@
+<%- include('../global-templates/header',{title: 'Music-Box! Here You Can Update Album data..',isAdmin: isAdmin,stylesheets:[]}); %>
+
+<div class="toggle-container">
+    <%- include('../global-templates/side-pannel',{linkNum: 4})%>
+    <div class="context-box">
+        <div class="container">
+            <form action="/admin/edit/Album" method="post">
+                <div class="form-group multi-select-dropbox">
+                    <label for="albumId">Select album ID Update</label>
+                    <div class="selected-items">
+                        <select style="display: none;" name="albumId">
+                        </select>
+                    </div>
+                    <div class="chooser-panel">
+                        <div class="chooserList">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="albumSelector"
+                                    placeholder="Type album name to get form server">
+                                <div class="items">
+                                    <div class="found-items">
+                                    </div>
+                                    <div class="not-found">
+                                        <div class="message">Nothing found</div>
+                                        <a href="/admin/upload/album" class="btn btn-primary">Add artist Data</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn input-ripple"
+                    style="display: block;padding: 10px 55px; margin: 0 auto;margin-top: 20px;">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../global-templates/footer',error,success); %>

@@ -1,0 +1,27 @@
+<div class="alert-container">
+    <% if(error!==[]) {
+        error.forEach(item=>{ %>
+            <div class="alert-failed-box">
+                <%= item%>
+            </div>
+            <%
+        })
+     }%>
+     <% if(success!==[]) {
+        success.forEach(item=>{ %>
+            <div class="alert-success-box">
+                <%= item%>
+            </div>
+            <%
+        })
+     }%>
+</div>
+<script src="/js/ripple.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/uploadScript.js"></script>
+    <script src="/js/global.js"></script>
+</body>
+
+</html>
